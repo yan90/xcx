@@ -1,0 +1,53 @@
+<!--pages/cart/cart.wxml-->
+<view class="page-box">
+  <!-- 头部开始  -->
+  <view class="cart-top">
+    <view class="top-left">共一件商品</view>
+    <view class="top-right">删除</view>
+  </view>
+  <!-- 头部结束 -->   
+
+  <!-- 列表开始 -->
+  <view class="item-list">
+    <view class="item" wx:for="{{goodsList}}" wx:key="*this">
+      <checkbox-group>
+        <checkbox value="1" checked="false"> </checkbox>
+      </checkbox-group>
+      <view class="pic">
+        <image
+                src="//m.360buyimg.com/mobilecms/s750x750_jfs/t1/130023/13/12256/67179/5f8611b5E0f7a0734/23bb6303ba8bc3ce.jpg!q80.dpg">
+        </image>
+      </view>
+      <view class="content">
+        <view class="title">{{item.goods_name}}</view>
+        <view class="desc">品牌</view>
+        <view class="price-info">
+          <view class="price">${{item.cart_price}}</view>
+          <view class="number">
+            <view class="decr">-</view>
+            <input value="9"></input>
+            <view class="incr">+</view>
+          </view>
+ 
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 列表结束 -->
+
+  <!-- 底部结算 开始 -->
+  <view class="total-box">
+    <view class="all">
+      <checkbox-group bindchange="selectAll">
+        <checkbox value="1" checked="{{isSelectAll}}"  />
+        <text>全选</text>
+      </checkbox-group>
+    </view>
+    <view class="total-price">
+      总价：
+      <text class="price">$88.88</text>
+    </view>
+    <view class="btn btn-default">去结算</view>
+  </view>
+  <!-- 底部结算 结束 -->
+</view>

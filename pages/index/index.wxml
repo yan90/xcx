@@ -1,14 +1,47 @@
-<!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+<view wx:for="{{goods}}" wx:key="unique">
+ <!-- 商品名称：{{goods[index].goods_name}}
+ 商品价格：{{goods[index].shop_price}} -->
+ <!-- 图片：{{goods[index].goods_img}} -->
+</view>
+<view>
+  <swiper indicator-dots="{{indicatorDots}}" 
+    autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{imgUrls}}">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image" />
+      </swiper-item>
     </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{goods_name}}</text>
-    <text class="user-motto">{{price}}</text>
+  </swiper>
+  <!-- 导航 -->
+  <view class="menu">
+    <scroll-view scroll-x="true" class="top-nav">
+        <view bindtap="toNew" class="top-btn {{new}}">上新</view>
+        <view bindtap="toGood" class="top-btn {{good}}">好货</view>
+        <view bindtap="toChild" class="top-btn {{child}}">童装</view>
+        <view bindtap="toMom" class="top-btn {{mom}}">手机</view>
+        <view bindtap="toGirl" class="top-btn {{girl}}">女装</view>
+        <view bindtap="toFood" class="top-btn {{food}}">食品</view>
+        <view bindtap="toBeauti" class="top-btn {{beauti}}">电脑</view>
+        <view bindtap="toHome" class="top-btn {{home}}">居家</view>
+    </scroll-view>
+</view>
+<!-- 首页 -->
+<view class="single_goods" wx:for="{{list}}" wx:key="unique"  id="{{list[index].goods_id}}" bindtap="gotodetail" >
+    <view class="single_image_wrap"  >
+      <image src="{{list[index].goods_img}}" class="single_goods_image"></image>
+    </view>
+    <view class="single_goods_infor">
+        <view class="moreHide body_head">
+          <text>{{list[index].goods_name}}</text>
+        </view>
+        <view class="single_goods_price">
+          <text> {{list[index].shop_price}}</text>
+          <view class="carImgWrap">
+            <image src="" class="carImg"></image>
+          </view>
+        </view>
+    </view>
   </view>
 </view>
+
+

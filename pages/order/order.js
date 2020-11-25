@@ -1,4 +1,4 @@
-// goods/goods.js
+// pages/order/order.js
 Page({
 
   /**
@@ -62,5 +62,34 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  /**
+   * 登录
+   */
+  login:function(u){
+    // console.log(u)
+    let userInfo=u.detail.userInfo;
+    // console.log(userInfo);
+    wx.login({
+      success(res){ 
+        if(res.code){
+          wx.request({
+            url: 'http://jd.2004.com/wx/xcxlogin?code='+res.code,
+            method:'post',
+            header:{'content-type':'application/json'},
+            data:{
+              u:userInfo
+            },
+            success:function(res){
+              wx.setStorageSync('token',res.data.data.token)
+              console.log(res)
+            }
+          })
+        }else{
+          console.log('登录失败'+res.errMsg)
+        }
+      }
+    })
+  },
+  
 })
