@@ -23,11 +23,12 @@
     <text class="title">{{goods.goods_name}}</text>
     <text class="price">￥{{goods.shop_price}}
     </text>
-    <view class="iconfont icon-shoucang1" bindtap="addFav" data-goods_id="{{goods.goods_id}}">
-      <text class="shoucang">收藏</text>
+    
+    <view wx:if="{{iscollect == true}}" class="iconfont icon-shoucang1" bindtap="addFav" data-goods_id="{{goods.goods_id}}">
+      <text class="shoucang" >收藏</text>
     </view>
-    <view class="iconfont icon-shoucang" bindtap="noFav" data-goods_id="{{goods.goods_id}}">
-      <text class="shoucang">收藏</text>
+    <view wx:else class="iconfont icon-shoucang" bindtap="noFav" data-goods_id="{{goods.goods_id}}">
+      <text class="shoucang">取消收藏</text>
     </view>
 
   </view>

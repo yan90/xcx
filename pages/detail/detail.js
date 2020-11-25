@@ -132,33 +132,42 @@ this.setData({
   },
   /**收藏 */
   addFav:function(e){
+    let _this = this;
     // console.log(e)
     let goods_id=e.currentTarget.dataset.goods_id
     let token=wx.getStorageSync('token')
     wx.request({
       url: apihost+'/api/add_fav?id='+goods_id+'&token='+token,
-      success:function(res){ 
-        console.log(res)
-        if(res.data.error==0){
+      success:function(res){
+        // console.log(res)
           wx.showToast({
             title: res.data.msg,
             icon: 'success',     
             duration:2000
           })
-          if(res.data.msg=='收藏成功'){
-            _this.setData({
-              is_shoucang:1
-            })
-          }else{
-            _this.setData({
-              is_shoucang:0
-            })
-          }
-        }
-        
+          _this.setData({
+            iscollect:false,
+          })
       }
     })
   },
   /** 取消收藏*/ 
- 
+  noFav:function(e){
+    let _this = this;
+    let goods_id=e.currentTarget.dataset.goods_id
+    let token=wx.getStorageSync('token')
+    wx.request({
+      url:apihost+'/api/no_fav?id='+goods_id+'&token='+token,
+      success:function(res){
+        wx.showToast({
+          title: res.data.msg,
+          icon:'success',
+          duration:200,
+        })
+        _this.setData({
+          iscollect:true,
+        })
+      }
+    })
+  }
 })
