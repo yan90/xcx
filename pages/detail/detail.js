@@ -55,10 +55,12 @@ Page({
     let access_token=wx.getStorageSync('token')
     // console.log(access_token)
     wx.request({
-      url: apihost+'/api/goods_details?goods_id='+goods_id,
+      url: apihost+'/api/goods_details?goods_id='+goods_id+'&token='+access_token,
       success(res){
+        console.log(res.data.data.iscollect)
         _this .setData({
-          goods:res.data,
+          iscollect:res.data.data.iscollect,
+          goods:res.data.data.list,
           goods_id:goods_id,
         })
       },

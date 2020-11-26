@@ -24,7 +24,7 @@
     <text class="price">￥{{goods.shop_price}}
     </text>
     
-    <view wx:if="{{iscollect == true}}" class="iconfont icon-shoucang1" bindtap="addFav" data-goods_id="{{goods.goods_id}}">
+    <view wx:if="{{iscollect}}" class="iconfont icon-shoucang1" bindtap="addFav" data-goods_id="{{goods.goods_id}}">
       <text class="shoucang" >收藏</text>
     </view>
     <view wx:else class="iconfont icon-shoucang" bindtap="noFav" data-goods_id="{{goods.goods_id}}">
