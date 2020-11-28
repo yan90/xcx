@@ -1,1 +1,41 @@
 <button open-type="getUserInfo" bindgetuserinfo="login">登录</button>
+
+<view class="page-box">
+  
+<view class="cart-top">
+<view class="left"> 共x件商品</view>
+<view class="right">删除</view>
+</view>
+
+<view class="cart-list">
+<view class="cart-item">
+<checkbox-group bindchange="checkboxChange">
+<label class="checkbox">
+<checkbox value="1" checked="{{true}}"/>
+</label>
+</checkbox-group>
+
+  <view class="goods-img">
+  <image src="https://img12.360buyimg.com/n7/jfs/t1/142828/40/1372/444519/5ef32477E6131c4f1/611632dfe2b58e22.jpg"></image>
+  </view>
+
+  <view class="goods-info">
+  <view class="goods-name"> iphone8p</view>
+  <view class="goods-brand">Apple</view>
+<view class="goods-price">
+  <view class="price">￥4800</view>
+  <view class="number">
+    <view class="decr">-</view>
+    <input value="9" />
+    <view class="decr">+</view>
+  </view>
+      </view>
+      </view>
+    </view>
+  </view>
+
+
+
+
+
+</view>

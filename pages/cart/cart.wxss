@@ -83,7 +83,7 @@ page {
 .total-box .btn {
   width: 130rpx;
   text-align: center;
-  border-radius: 10rpx;
+  border-radius: 15rpx;
   font-size:30rpx;
   height:70rpx;
   line-height: 70rpx;

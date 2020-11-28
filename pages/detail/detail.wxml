@@ -48,14 +48,14 @@
   <!-- 底部导航 开始 -->
   <view class="bottom-nav">
         <view class="nav-icon">
-            <view class="iconfont   icon-shouye"></view>
+            <view class="iconfont   icon-shouye" bindtap="shouye"></view>
             <view class="photo"> 首页 </view>
         </view>
         <view class="nav-icon" bindtap="makeCall">
             <view class="iconfont icon-kefu"></view>
             <view class="photo" >客服</view>
         </view>
-        <view class="nav-icon">
+        <view class="nav-icon" bindtap="gouwuche">
             <view class="iconfont    icon-qicheqianlian-"></view>
             <view class="photo">购物车</view>
         </view>

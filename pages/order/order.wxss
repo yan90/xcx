@@ -1,1 +1,46 @@
 /* pages/order/order.wxss */
+.cart-top{
+  display: flex;
+  justify-content: space-between;   /* 左右分开的 */
+  padding-left: 20rpx;
+  padding-right: 30rpx;
+  background-color: #eeeeee;
+  
+}
+.cart-top .left{
+  font-size: 50rpx;
+}
+.cart-top .right{
+  font-size: 50rpx;
+}
+.cart-list .cart-item {
+  display: flex;
+  align-items: center;
+}
+
+.cart-list .cart-item .goods-img image{
+width: 200rpx;
+height: 200rpx;
+}
+.cart-list .cart-item .goods-price{
+  display: flex;
+}
+.cart-list .cart-item .goods-price .number{
+  display: flex;
+  margin-left: 100rpx;
+  border: 1rpx solid #eeeeee;
+  border-radius: 15rpx;
+  text-align: center;
+}
+.cart-list .cart-item .goods-price .number input{
+  width: 80rpx;
+  text-align: center;
+}
+.cart-list .cart-item .goods-price .number .decr{
+  width: 50rpx;
+  border-right:2rpx solid #eeeeee ;
+}
+.cart-list .cart-item .goods-price .number .incr{
+  width: 30rpx;
+  border-right:2rpx solid #eeeeee ;
+}

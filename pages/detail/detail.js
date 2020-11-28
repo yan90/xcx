@@ -171,5 +171,17 @@ this.setData({
         })
       }
     })
+  },
+  /**购物车跳转*/
+  gouwuche:function(){
+    wx.switchTab({
+      url: '../cart/cart',
+    })
+  },
+  /**首页跳转 */
+  shouye:function(){
+    wx.switchTab({
+      url: '../index/index',
+    })
   }
 })

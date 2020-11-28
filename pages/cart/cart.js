@@ -7,8 +7,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isSelectAll: false,
+    selectAll: false,
     goodsList:[],
+    totalprice:0,
   },
 
   /**
@@ -79,7 +80,7 @@ Page({
       url: apihost + '/wx/cartlist?token='+token,
       success: function(d)
       {
-        // console.log(d)
+        // console.log(d.data.data.list)
         if(d.data.errno==0)   //请求接口成功
         {
           _this.setData({
@@ -88,31 +89,57 @@ Page({
         }else{
           console.log("接口请求错误")
         }
-
       }
     })
   },
-
   /**
    * 全选
    */
   selectAll:function()
   {
-    let _this = this;
-    let isSelectAll = !_this.data.isSelectAll;
-
-    //全选
-    if(isSelectAll)
-    {
-      console.log("全选");
-
-    }else{
-      console.log("全不选")
-    }
-
-    _this.setData({
-      isSelectAll:isSelectAll,
+    let list=this.data.goodsList;
+    // console.log(list)
+    //总价
+    let total=0
+    let all=!this.data.selectAll;
+    list.forEach((item)=>{
+      if(all){
+        item.checked=true,
+        total=item.goods_num * item.shop_price
+        // console.log(item.shop_price)
+      }else{
+        item.checked=false
+      }
     })
-
+     this.setData({
+       goodsList:list,
+       selectAll:all, 
+       totalprice:total
+     })
+  },
+  //全部删除
+  delete:function(){
+    let _this=this;
+    let token=wx.getStorageSync('token')
+// console.log(token)
+    wx.showModal({
+      title:'删除提示',
+      content: '确定要删除吗？',
+      confirmText:'确认删除',
+      cancelText:'再想想',
+    })
+    wx.request({
+      url: apihost+'/wx/alldelete?token='+token,
+    success:function(d){
+      // console.log(d)
+        // d.data
+    }
+    })
+  },
+  //单选
+  checkbox:function(e){
+    // let list=this.data.goodsList;
+    // let all=!this.data.selectAll;
+    // list.f
   }
 })
