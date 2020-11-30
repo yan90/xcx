@@ -57,7 +57,7 @@ Page({
     wx.request({
       url: apihost+'/api/goods_details?goods_id='+goods_id+'&token='+access_token,
       success(res){
-        console.log(res.data.data.iscollect)
+        // console.log(res.data.data.iscollect)
         _this .setData({
           iscollect:res.data.data.iscollect,
           goods:res.data.data.list,

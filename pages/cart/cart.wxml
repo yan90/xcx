@@ -3,7 +3,7 @@
   <!-- 头部开始  -->
   <view class="cart-top">
     <view class="top-left">共一件商品</view>
-    <view class="top-right" bindtap="delete">全部删除</view>
+    <view class="top-right" bindtap="delete">全部清空</view>
   </view>
   <!-- 头部结束 -->   
 
@@ -11,29 +11,28 @@
   <view class="item-list">
     <view class="item" wx:for="{{goodsList}}" wx:key="*this">
       <checkbox-group bindtap="checkbox"> 
-        <checkbox value="1" checked="{{item.checked}}" > </checkbox>
+        <checkbox value="1" checked="{{item.checked}}" data-index="{{index}}"> </checkbox>
       </checkbox-group>
       <view class="pic">
         <image src="{{item.goods_img}}">
         </image>
       </view>
       <view class="content">
+      <view class="delete" bindtap="danshanchu"  data-goods_id="{{item.goods_id}}">删除</view>
         <view class="title">{{item.goods_name}}</view>
         <view class="desc">品牌</view>
         <view class="price-info">
           <view class="price">${{item.shop_price}}</view>
           <view class="number">
-            <view class="decr">-</view>
-            <input value="9"></input>
-            <view class="incr">+</view>
+            <view class="decr" bindtap="decr" data-index="{{index}}">-</view>
+            <input value="{{item.goods_num}}" ></input>
+            <view class="incr" bindtap="incr" data-index="{{index}}">+</view>
           </view>
- 
         </view>
       </view>
     </view>
   </view>
   <!-- 列表结束 -->
-
   <!-- 底部结算 开始 -->
   <view class="total-box">
     <view class="all">

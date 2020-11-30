@@ -10,6 +10,7 @@ Page({
     selectAll: false,
     goodsList:[],
     totalprice:0,
+    selectone:false,
   },
 
   /**
@@ -17,7 +18,7 @@ Page({
    */
   onLoad: function (options) {
     //获取购物车商品列表
-    this.getCartList()
+    // this.getCartList()
   },
 
   /**
@@ -31,7 +32,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+  //获取购物车商品列表自动刷新
+  this.getCartList()
+  //全部删除自动刷新
+  // this.delete()
   },
 
   /**
@@ -127,19 +131,92 @@ Page({
       content: '确定要删除吗？',
       confirmText:'确认删除',
       cancelText:'再想想',
+      success(res){
+        if(res.confirm){
+          wx.request({
+            url: apihost+'/wx/alldelete?token='+token,
+            success(res){
+              if(res.data.errno=0){
+                wx.showToast({
+                  title: '删除成功',
+                  icon:'success',
+                  duration:2000
+                })
+              }else if(res.cancel){
+                wx.showToast({
+                  title: '取消成功',
+                  icon:'success',
+                  duration:2000
+                })
+              }
+            }
+          })
+        }
+      }
     })
-    wx.request({
-      url: apihost+'/wx/alldelete?token='+token,
-    success:function(d){
-      // console.log(d)
-        // d.data
-    }
-    })
+  
   },
   //单选
   checkbox:function(e){
-    // let list=this.data.goodsList;
-    // let all=!this.data.selectAll;
-    // list.f
+ 
+    let listone=this.data.goodsList
+   let one=!this.data.selectAll
+   let total=0
+   listone.forEach((item)=>{
+     if(one){
+      // item.checked=true
+      total=item.goods_num * item.shop_price
+     }else{
+      // item.checked=false
+     }
+     this.setData({
+      // goodsList:listone,
+      totalprice:total,
+      // selectone:one
+    })
+   })
+
+  },
+  //点击商品+1
+incr:function(e){
+// console.log(e)
+//赋值获取这这商品的点击
+let index=e.currentTarget.dataset.index;
+// console.log(e)
+// console.log(index)
+//获取这个商品找到goods_num
+let goodsinfo = this.data.goodsList
+let list=goodsinfo[index]
+// console.log(list)
+//找到goods_num给变量 定义然后加1
+let goods_num=list.goods_num
+goods_num=goods_num+1
+list.goods_num = goods_num
+// console.log(goodsinfo)
+this.setData({
+  goodsList:goodsinfo
+})
+  },
+////点击商品-1
+decr:function(e){
+  let index=e.currentTarget.dataset.index;
+  // console.log(index)
+  let goodsinfo=this.data.goodsList
+  let list=goodsinfo[index]
+  let goods_num=list.goods_num
+  if(goods_num>1){
+    goods_num=goods_num-1
+    list.goods_num = goods_num
   }
+  this.setData({
+    goodsList:goodsinfo
+  })
+},
+//单个删除
+danshanchu:function(e){
+  let goods_id=e.currentTarget.dataset.goods_id
+  wx.request({
+    url: apihost+'/wx/dandelete?goods_id='+goods_id,
+  })
+}
 })
