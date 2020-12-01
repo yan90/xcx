@@ -9,10 +9,9 @@
 
   <!-- 列表开始 -->
   <view class="item-list">
+    <checkbox-group bindchange="checkbox"> 
     <view class="item" wx:for="{{goodsList}}" wx:key="*this">
-      <checkbox-group bindtap="checkbox"> 
-        <checkbox value="1" checked="{{item.checked}}" data-index="{{index}}"> </checkbox>
-      </checkbox-group>
+        <checkbox value="{{item.goods_id}}" checked="{{item.checked}}" > </checkbox>
       <view class="pic">
         <image src="{{item.goods_img}}">
         </image>
@@ -20,7 +19,6 @@
       <view class="content">
       <view class="delete" bindtap="danshanchu"  data-goods_id="{{item.goods_id}}">删除</view>
         <view class="title">{{item.goods_name}}</view>
-        <view class="desc">品牌</view>
         <view class="price-info">
           <view class="price">${{item.shop_price}}</view>
           <view class="number">
@@ -31,13 +29,14 @@
         </view>
       </view>
     </view>
+  </checkbox-group>
   </view>
   <!-- 列表结束 -->
   <!-- 底部结算 开始 -->
   <view class="total-box">
     <view class="all">
       <checkbox-group bindchange="selectAll">
-        <checkbox   />
+        <checkbox  checked="{{liSelectAll}}" />
         <text>全选</text>
       </checkbox-group>
     </view>

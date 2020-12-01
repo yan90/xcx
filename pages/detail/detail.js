@@ -19,7 +19,7 @@ Page({
   duration: 1200,
   iscollect: true
   },
-  
+    //加入购物车
       addcart:function(e){
         // console.log(e)
         let goods_id=e.currentTarget.id
